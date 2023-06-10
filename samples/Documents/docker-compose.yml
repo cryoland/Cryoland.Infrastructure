@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  pdf_converter:
+    image: docker.io/thecodingmachine/gotenberg:7
+    container_name: pdf_conv
+    networks:
+      - documents_web
+    restart: always
+
+  thumbnail_service:
+    image: docker.io/fpurchess/preview-service:latest
+    container_name: thumb_srv
+    networks:
+      - documents_web
+    restart: always
+
+  cryoland.infrastructure.documents.web:
+    build:
+      context: ../../
+      dockerfile: ./samples/Documents/Cryoland.Infrastructure.Documents.Web/Dockerfile
+    networks:
+      - documents_web
+    depends_on:
+      - pdf_converter
+      - thumbnail_service
+    restart: always
+
+networks:
+  documents_web:
+    driver: bridge

@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  pdf_converter:
+    ports:
+      - 3000:3000
+
+  thumbnail_service:
+    ports:
+      - 8000:8000
+
+  cryoland.infrastructure.documents.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:80
+      - "PdfConverterService__Url=http://pdf_converter:3000/forms/libreoffice/convert"
+      - "ThumbnailService__Url=http://thumbnail_service:8000/preview"
+    ports:
+      - 5046:80

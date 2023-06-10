@@ -1,0 +1,10 @@
+{
+  "documentGenerator": {
+    "aspNetCoreToOpenApi": {
+      "verbose": true,
+      "aspNetCoreEnvironment": "Development",
+      "infoVersion": "1.0.0dev",
+      "configuration": "Development"
+    }
+  }
+}

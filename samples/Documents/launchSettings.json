@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "pdf_converter": "StartWithoutDebugging",
+        "thumbnail_service": "StartWithoutDebugging",
+        "cryoland.infrastructure.documents.web": "StartWithoutDebugging"
+      }
+    },
+    "Docker Compose [Debug]": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "pdf_converter": "StartWithoutDebugging",
+        "thumbnail_service": "StartWithoutDebugging",
+        "cryoland.infrastructure.documents.web": "StartDebugging"
+      }
+    }
+  }
+}
