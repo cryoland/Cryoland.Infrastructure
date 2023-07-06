@@ -24,12 +24,12 @@ RUN dotnet restore "./Cryoland.Infrastructure.Documents.csproj"
 COPY ["./samples/Documents/Cryoland.Infrastructure.Documents.Web", "."]
 
 WORKDIR "/src/."
-RUN dotnet build "Cryoland.Infrastructure.Documents.csproj" -c Release -o /app/build
+RUN dotnet build "Cryoland.Infrastructure.Documents.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Cryoland.Infrastructure.Documents.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Cryoland.Infrastructure.Documents.Web.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Cryoland.Infrastructure.Documents.dll"]
+ENTRYPOINT ["dotnet", "Cryoland.Infrastructure.Documents.Web.dll"]
